@@ -7,12 +7,6 @@
 	body{ font-size:16pt; font-weight:bold; }
 	h1 { color:white;padding:5px; font-size:24pt;
 		background-color:red; }
-	div.AA {
-	  font-weight:normal;
-	  font-family: "MS PGothic",sans-serif;
-	  font-size:12pt; /* 変更OK */
-	  line-height:100%;
-	}
 	</style>
     <script>
 		function startC()
@@ -45,7 +39,7 @@
           const heading = Math.round(alpha); // 角度を整数に
           const text = `現在の方位: ${heading}°\n`;
           const textarea = document.getElementById('ta');
-          textarea.value += text;
+          textarea.value = text;
         }
       }, true);
     }
@@ -54,9 +48,9 @@
 
 <body>
 
-	<textarea id="ta"></textarea>
+	<p style="text-align: center;">...</p>
 	<br>
-	<button onclick="startC()">start</button>
+	<button onclick="startC()" style="text-align: center;">start</button>
 
 </body>
 
