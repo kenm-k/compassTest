@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<style>
+	body{ font-size:16pt; font-weight:bold; }
+	h1 { color:white;padding:5px; font-size:24pt;
+		background-color:red; }
+	div.AA {
+	  font-weight:normal;
+	  font-family: "MS PGothic",sans-serif;
+	  font-size:12pt; /* 変更OK */
+	  line-height:100%;
+	}
+	</style>
+    <script>
+		function startC()
+		{
+      // iOS 13+ など、許可が必要な場合に対応
+      if (typeof DeviceOrientationEvent !== 'undefined' &&
+          typeof DeviceOrientationEvent.requestPermission === 'function') {
+
+        DeviceOrientationEvent.requestPermission()
+          .then(permissionState => {
+            if (permissionState === 'granted') {
+              startCompass();
+            } else {
+              alert('センサーへのアクセスが許可されませんでした。');
+            }
+          })
+          .catch(console.error);
+
+      } else {
+        // Androidなど、許可不要な環境
+        startCompass();
+      }
+    }
+
+    function startCompass() {
+      window.addEventListener('deviceorientation', function (event) {
+        const alpha = event.alpha;
+
+        if (alpha !== null) {
+          const heading = Math.round(alpha); // 角度を整数に
+          const text = `現在の方位: ${heading}°\n`;
+          const textarea = document.getElementById('ta');
+          textarea.value += text;
+        }
+      }, true);
+    }
+    </script>
+</head>
+
+<body>
+
+	<textarea id="ta"></textarea>
+	<br>
+	<button onclick="startC()">start</button>
+
+</body>
+
+</html>
