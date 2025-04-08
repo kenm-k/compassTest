@@ -11,6 +11,8 @@
     <script>
 		function startC()
 		{
+      document.getElementById('ta').textContent = "";
+
       // iOS 13+ など、許可が必要な場合に対応
       if (typeof DeviceOrientationEvent !== 'undefined' &&
           typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -39,7 +41,7 @@
           const heading = Math.round(alpha); // 角度を整数に
           const text = `現在の方位: ${heading}°\n`;
           const textarea = document.getElementById('ta');
-          textarea.value = text;
+          textarea.textContent = text;
         }
       }, true);
     }
@@ -48,9 +50,9 @@
 
 <body>
 
-	<p style="text-align: center;">...</p>
+	<h1 id="ta">...</h1>
 	<br>
-	<button onclick="startC()" style="text-align: center;">start</button>
+	<button onclick="startC()">start</button>
 
 </body>
 
